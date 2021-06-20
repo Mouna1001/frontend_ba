@@ -1,0 +1,16 @@
+
+<div class="primary">
+    <h3>Prévisions 5 jours</h3>
+    <ul *ngFor="let forcast of weatherData">
+        <li>
+            {{forecast.dt_txt | date: 'EEE, MMM dd'}}
+            <img src="assets/[[forecast.weather[0].icon}}.png" alt="icon">
+            <span>
+                {{forecast.main.temp.min | number: '1.0-0'}} °C\
+                {{forecast.main.temp.max | number: '1.0-0'}} °C
+            </span>
+            <span>{{forecast.weather[0].main}}</span>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </li>
+    </ul> 
+</div>

@@ -1,0 +1,57 @@
+<dx-chart
+    id="chart"
+    [dataSource]="lineData"
+    [stickyHovering]="false"
+    title="Evolution du taux de remplissage pendant la durée sélectionnée par rapport à la capacité normale">
+    <dxi-series valueField="fill_rate" name="Series 1"></dxi-series>
+    <dxi-series valueField="normal_capacity" name="Series 2"></dxi-series>
+    <dxo-common-series-settings
+        argumentField="normal_capacity"
+        type="spline"
+        hoverMode="includePoints">
+        <dxo-point hoverMode="allArgumentPoints"></dxo-point>
+    </dxo-common-series-settings>
+    <dxo-legend
+        verticalAlignment="bottom"
+        horizontalAlignment="center"
+        hoverMode="excludePoints">
+    </dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-chart>
+<div class="action">
+    <dx-select-box
+        id="choose-date"
+        [dataSource]="lineData"
+        [width]="200"   
+        valueExpr="date"
+        displayExpr="date"        
+    ></dx-select-box>
+    <div class="label">Sélectionnez la date de début :
+    </div>
+</div>
+<div class="action">
+    <dx-select-box
+        id="choose-date"
+        [dataSource]="lineData"
+        [width]="200"   
+        valueExpr="date"
+        displayExpr="date"        
+        
+        ></dx-select-box>
+    <div class="label">Sélectionnez la date de fin :
+    </div>
+</div>
+
+<div class="action">
+    <dx-select-box
+        id="choose-barrage"
+        [dataSource]="lineData"
+        [width]="200"   
+        valueExpr="name"
+        displayExpr="name"        
+        
+    >
+    </dx-select-box>
+    <div class="label">Choisissez un barrage :
+    </div>
+</div>

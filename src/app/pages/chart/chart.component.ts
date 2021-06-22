@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,13 +12,15 @@ export class ChartComponent implements OnInit {
   chartdata: any = [];
   year: any = [];
   month:any = [];
-  day:any = [];
+  monthData:any=[];
+  data:any=[];
   
-
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getDataFromServer();
+    this.onValueChanged(this.data)
+  
   }
 
   getDataFromServer() {
@@ -25,14 +28,14 @@ export class ChartComponent implements OnInit {
     .subscribe(res => { 
       let data: any = res['rows']; 
       if (data && data.length > 0) {  
-        data.forEach( (item: { year: string; fill_rate: any; }) => {
+        data.forEach( (item: { year: string; normal_capacity: any; }) => {
           if (this.year.indexOf(item.year) == -1) {
             this.year.push(item.year);
           }
 
           this.chartdata.push({
             ...item,
-            ['year'+item.year]: item.fill_rate
+            ['year'+item.year]: item.normal_capacity
           });
         })
         console.log(this.chartdata, this.year);
@@ -42,10 +45,31 @@ export class ChartComponent implements OnInit {
   } 
 
   onValueChanged(data: { value: any; } ){
-    
+    this.http.get('http://localhost:5000/query')
+    .subscribe(res => { 
+      let data: any = res['rows']; 
+      if (data && data.length > 0) {  
+        data.forEach( (item: { month: string; normal_capacity: any; }) => {
+          if (this.month.indexOf(item.month) == -1) {
+            this.month.push(item.month);  
+          }
+
+          this.monthData.push({
+            ...item,
+            ['month'+item.month]: item.normal_capacity
+          });
+          
+        })
+        
+        console.log(this.monthData, this.month);
+      }
+  
+    })
     console.log(data.value)
-        this.chartdata.filter(['year', '=', data.value]);
-        this.chartdata.load();
+    
+        this.monthData.filter(['month', '=', data.value]);
+        this.monthData.load();
+     
     }
    }
   

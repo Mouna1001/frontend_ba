@@ -64,8 +64,8 @@ export class ChartComponent implements OnInit {
         console.log(this.monthData, this.month);
       }
   
-    })
-    console.log(data.value)
+    }) 
+    //console.log(data.value)
     
         this.monthData.filter(['month', '=', data.value]);
         this.monthData.load();

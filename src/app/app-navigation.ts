@@ -27,7 +27,12 @@ export const navigation = [
       {
         text: 'Line Chart',
         path: '/Linechart'
+      },
+      {
+        text: 'pivot',
+        path: '/pivot'
       }
+
     ]
   }
 ];

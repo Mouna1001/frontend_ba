@@ -7,6 +7,7 @@ import { BarragesComponent } from './pages/barrages/barrages.component';
 import { ChartComponent } from './pages/chart/chart.component';
 import { LineComponent } from './pages/Linechart/line.component';
 import { TodayComponent } from './pages/today/today.component';
+import { PivotComponent } from './pages/pivot/pivot.component';
 
 const routes: Routes = [
  
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'today',
     component: TodayComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pivot',
+    component: PivotComponent,
     canActivate: [ AuthGuardService ]
   }
   

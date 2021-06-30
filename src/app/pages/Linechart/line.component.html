@@ -2,7 +2,7 @@
     id="chart"
     [dataSource]="lineData"
     [stickyHovering]="false"
-    title="Evolution du taux de remplissage pendant la durée sélectionnée par rapport à la capacité normale">
+    title="Evolution of the filling rate during the selected period compared to the normal capacity">
     <dxi-series valueField="fill_rate" name="Series 1"></dxi-series>
     <dxi-series valueField="normal_capacity" name="Series 2"></dxi-series>
     <dxo-common-series-settings
@@ -26,7 +26,7 @@
         valueExpr="date"
         displayExpr="date"        
     ></dx-select-box>
-    <div class="label">Sélectionnez la date de début :
+    <div class="label">Select the start date :
     </div>
 </div>
 <div class="action">
@@ -38,7 +38,7 @@
         displayExpr="date"        
         
         ></dx-select-box>
-    <div class="label">Sélectionnez la date de fin :
+    <div class="label">Select the end date:
     </div>
 </div>
 
@@ -52,6 +52,6 @@
         
     >
     </dx-select-box>
-    <div class="label">Choisissez un barrage :
+    <div class="label">select a barrage name :
     </div>
 </div>

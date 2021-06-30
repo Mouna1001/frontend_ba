@@ -14,6 +14,9 @@ import { ChartComponent } from './pages/chart/chart.component';
 import { LineComponent } from './pages/Linechart/line.component';
 import { FutureComponent } from './pages/future/future.component';
 import { TodayComponent } from './pages/today/today.component';
+import { PivotComponent } from './pages/pivot/pivot.component';
+import { DxPivotGridModule } from 'devextreme-angular';
+
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { TodayComponent } from './pages/today/today.component';
     ChartComponent,
     LineComponent,
     TodayComponent,
-    FutureComponent
+    FutureComponent,
+    PivotComponent
   ],
   imports: [
     BrowserModule,
@@ -37,11 +41,14 @@ import { TodayComponent } from './pages/today/today.component';
     DxSelectBoxModule,
     AppRoutingModule,
     BrowserModule,
+    DxPivotGridModule,
     
     
   ],
   providers: [AuthService, ScreenService, AppInfoService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
+    
 })
 export class AppModule { }
 platformBrowserDynamic().bootstrapModule(AppModule);

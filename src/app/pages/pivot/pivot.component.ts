@@ -1,17 +1,9 @@
 import {  OnInit } from '@angular/core';
-import { NgModule, Component, enableProdMode, ChangeDetectionStrategy } from '@angular/core';
+import {  Component, enableProdMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ViewChild, AfterViewInit,  } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { DxPivotGridModule,
-         DxPivotGridComponent,
-         DxChartModule,
+import { ViewChild} from '@angular/core';
+import { DxPivotGridComponent,
          DxChartComponent } from 'devextreme-angular';
-import DataSource from 'devextreme/data/data_source';
-import ArrayStore from 'devextreme/data/array_store';
-
 
 
 if(!/localhost/.test(document.location.host)) {
@@ -28,6 +20,10 @@ export class PivotComponent implements OnInit {
   @ViewChild(DxChartComponent, { static: false }) chart: DxChartComponent;
 
   Pivotdata: any;
+  showDataFields: boolean = true;
+    showRowFields: boolean = true;
+    showColumnFields: boolean = true;
+    showFilterFields: boolean = true;
   
   constructor(private http: HttpClient) { }
 
@@ -36,13 +32,68 @@ export class PivotComponent implements OnInit {
   }
 
   getDataFromServer() {
-    this.http.get('http://localhost:5000/select')
+    this.http.get('http://localhost:5000/route')
     .subscribe(res => {
-      let data: any = res['rows']; 
-      
+       
       this.Pivotdata = res;
       
     
     })
   } 
+  ngAfterViewInit() {
+    this.pivotGrid.instance.bindChart(this.chart.instance, {
+      dataFieldsDisplayMode: "splitPanes",
+      alternateDataFields: false
+    });
+  }
+  contextMenuPreparing(e) {
+    var dataSource = e.component.getDataSource(),
+        sourceField = e.field;
+
+    if (sourceField) {
+        if (!sourceField.groupName || sourceField.groupIndex === 0) {
+            e.items.push({
+                text: "Hide field",
+                onItemClick: function () {
+                    var fieldIndex;
+                    if (sourceField.groupName) {
+                        fieldIndex = dataSource.getAreaFields(sourceField.area, true)[sourceField.areaIndex].index;
+                    } else {
+                        fieldIndex = sourceField.index;
+                    }
+
+                    dataSource.field(fieldIndex, {
+                        area: null
+                    });
+                    dataSource.load();
+                }
+            });
+        }
+
+        if (sourceField.dataType === "number") {
+            var setSummaryType = function (args: { itemData: { value: any; }; }) {
+                dataSource.field(sourceField.index, {
+                    summaryType: args.itemData.value
+                });
+
+                dataSource.load();
+            },
+                menuItems = [];
+
+            e.items.push({ text: "Summary Type", items: menuItems });
+
+            for (let summaryType of ["Sum", "Avg", "Min", "Max"]) {
+                var summaryTypeValue = summaryType.toLowerCase();
+
+                menuItems.push({
+                    text: summaryType,
+                    value: summaryType.toLowerCase(),
+                    onItemClick: setSummaryType,
+                    selected: e.field.summaryType === summaryTypeValue
+                });
+            };
+        }
+    }
+}
+  
 }

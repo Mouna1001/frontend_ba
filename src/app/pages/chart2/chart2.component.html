@@ -1,6 +1,6 @@
 <dx-chart id="chartcontainer"
     [dataSource]="chartdata"
-    title="Moyenne du reserve 2020/2021"
+    title="Moyenne de Taux de remplissage 2020/2021"
     palette="Harmony Light"
    
     >    
@@ -14,7 +14,7 @@
         selectionMode="allArgumentPoints">
         <dxo-label
             [visible]="true"
-            [format]="{ 
+            [format]="{
                 type: 'fixedPoint', 
                 precision: '0'
             }">
@@ -35,7 +35,7 @@
         ></dxo-border>
     </dxo-common-pane-settings>
 
-</dx-chart>
+</dx-chart> 
 <div class="action">
     <dx-select-box
         id="choose-date"
@@ -48,4 +48,5 @@
     <div class="label">select a month :
     </div>  
 </div>
+
 

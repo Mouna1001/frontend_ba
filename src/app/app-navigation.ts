@@ -17,19 +17,24 @@ export const navigation = [
     items: [
       
       {
-        text: 'Datagrid',
+        text: 'Tableau barrages',
         path: '/barrages'
       },
       {
-        text: 'Chart',
+        text: 'Moyenne reserve ',
         path: '/chart'
       },
       {
-        text: 'Line Chart',
-        path: '/Linechart'
+        text: 'Moyenne taux de remplissage ',
+        path: '/chart2'
       },
       {
-        text: 'pivot',
+        text: 'Moyenne capacité normale ',
+        path: '/chart3'
+      },
+      
+      {
+        text: 'Tableau croisé',
         path: '/pivot'
       }
 

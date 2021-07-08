@@ -40,7 +40,7 @@ export class Chart2Component implements OnInit {
         console.log(this.chartdata, this.year);
       }
       // this.chartdata = res;
-    })
+    }) 
   } 
 
   onValueChanged(data: { value: any; } ){

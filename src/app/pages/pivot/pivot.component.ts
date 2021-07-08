@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ViewChild} from '@angular/core';
 import { DxPivotGridComponent,
          DxChartComponent } from 'devextreme-angular';
+      
 
 
 if(!/localhost/.test(document.location.host)) {
@@ -20,10 +21,15 @@ export class PivotComponent implements OnInit {
   @ViewChild(DxChartComponent, { static: false }) chart: DxChartComponent;
 
   Pivotdata: any;
+  allowSearch: boolean = true;
+  showRelevantValues: boolean = true;
   showDataFields: boolean = true;
-    showRowFields: boolean = true;
-    showColumnFields: boolean = true;
-    showFilterFields: boolean = true;
+  showRowFields: boolean = true;
+  showColumnFields: boolean = true;
+  showFilterFields: boolean = true;
+  showTotalsPrior = false;
+  rowsDataFieldArea = false;
+  treeHeaderLayout = true;
   
   constructor(private http: HttpClient) { }
 
@@ -34,9 +40,16 @@ export class PivotComponent implements OnInit {
   getDataFromServer() {
     this.http.get('http://localhost:5000/route')
     .subscribe(res => {
-       
-      this.Pivotdata = res;
       
+       
+      
+      this.Pivotdata = res;
+      if(this.Pivotdata){
+        this.Pivotdata.forEach(element => {
+          element.date = new Date(element.date);
+        });
+      }
+       
     
     })
   } 
@@ -46,6 +59,7 @@ export class PivotComponent implements OnInit {
       alternateDataFields: false
     });
   }
+  
   contextMenuPreparing(e) {
     var dataSource = e.component.getDataSource(),
         sourceField = e.field;
@@ -93,7 +107,10 @@ export class PivotComponent implements OnInit {
                 });
             };
         }
+        
     }
+   
 }
+
   
 }

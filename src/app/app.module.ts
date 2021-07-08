@@ -15,13 +15,9 @@ import { LineComponent } from './pages/Linechart/line.component';
 import { FutureComponent } from './pages/future/future.component';
 import { TodayComponent } from './pages/today/today.component';
 import { PivotComponent } from './pages/pivot/pivot.component';
-import { DxPivotGridModule,DxCheckBoxModule } from 'devextreme-angular';
+import { DxPivotGridModule,DxCheckBoxModule, DxButtonModule } from 'devextreme-angular';
 import { Chart2Component } from './pages/chart2/chart2.component';
 import { Chart3Component } from './pages/chart3/chart3.component';
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -48,7 +44,8 @@ import { Chart3Component } from './pages/chart3/chart3.component';
     AppRoutingModule,
     BrowserModule,
     DxPivotGridModule,
-    DxCheckBoxModule
+    DxCheckBoxModule,
+    DxButtonModule
     
     
   ],

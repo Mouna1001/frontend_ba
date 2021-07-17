@@ -11,25 +11,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { DxDataGridModule } from 'devextreme-angular';
 import { DxChartModule,DxSelectBoxModule} from 'devextreme-angular';
 import { ChartComponent } from './pages/chart/chart.component';
-import { LineComponent } from './pages/Linechart/line.component';
-import { FutureComponent } from './pages/future/future.component';
-import { TodayComponent } from './pages/today/today.component';
 import { PivotComponent } from './pages/pivot/pivot.component';
 import { DxPivotGridModule,DxCheckBoxModule, DxButtonModule } from 'devextreme-angular';
 import { Chart2Component } from './pages/chart2/chart2.component';
 import { Chart3Component } from './pages/chart3/chart3.component';
+import { WeatherComponent } from './pages/weather/weather.component';
+import { HttpClient } from "@angular/common/http";
+import { WeatherService } from "src/app/shared/services/weather.service";
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     BarragesComponent,
     ChartComponent,
-    LineComponent,
-    TodayComponent,
-    FutureComponent,
     PivotComponent,
     Chart2Component,
-    Chart3Component
+    Chart3Component,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,7 @@ import { Chart3Component } from './pages/chart3/chart3.component';
     
     
   ],
-  providers: [AuthService, ScreenService, AppInfoService],
+  providers: [WeatherService,HttpClientModule,HttpClient,AuthService, ScreenService, AppInfoService],
   bootstrap: [AppComponent],
   
     

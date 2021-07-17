@@ -1,16 +1,12 @@
 export const navigation = [
  
-  {
-    text: '',
-    path: '/home',
-    //icon: 'home'
-  },
+ 
+  
   {
     text: 'Météo',
-    path: '/today',
+    path: '/weather',
     icon: 'isnotblank'
   },
-  
   {
     text: 'Barrage',
     icon: 'folder',

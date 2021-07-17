@@ -7,9 +7,8 @@ import { BarragesComponent } from './pages/barrages/barrages.component';
 import { ChartComponent } from './pages/chart/chart.component';
 import { Chart2Component } from './pages/chart2/chart2.component';
 import { Chart3Component } from './pages/chart3/chart3.component';
-import { LineComponent } from './pages/Linechart/line.component';
-import { TodayComponent } from './pages/today/today.component';
 import { PivotComponent } from './pages/pivot/pivot.component';
+import { WeatherComponent } from './pages/Weather/weather.component';
 
 const routes: Routes = [
  
@@ -21,21 +20,17 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
+    path: 'weather',
+    component: WeatherComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: 'chart',
     component: ChartComponent,
     canActivate: [ AuthGuardService ]
   },
-  {
-    path: 'Linechart',
-    component: LineComponent,
-    canActivate: [ AuthGuardService ]
-  },
-  {
-    path: 'today',
-    component: TodayComponent,
-    canActivate: [ AuthGuardService ]
-  },
-  {
+
+   {
     path: 'pivot',
     component: PivotComponent,
     canActivate: [ AuthGuardService ]

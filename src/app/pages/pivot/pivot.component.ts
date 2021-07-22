@@ -10,6 +10,7 @@ import { DxPivotGridComponent,
 if(!/localhost/.test(document.location.host)) {
   enableProdMode();
 }
+
 @Component({
   selector: 'app-pivot',
   templateUrl: './pivot.component.html',
@@ -36,7 +37,7 @@ export class PivotComponent implements OnInit {
   ngOnInit(): void {
     this.getDataFromServer();
   }
-
+  
   getDataFromServer() {
     this.http.get('http://localhost:5000/route')
     .subscribe(res => {
@@ -49,7 +50,7 @@ export class PivotComponent implements OnInit {
           element.date = new Date(element.date);
         });
       }
-       
+     
     
     })
   } 
@@ -85,9 +86,11 @@ export class PivotComponent implements OnInit {
         }
 
         if (sourceField.dataType === "number") {
+           
             var setSummaryType = function (args: { itemData: { value: any; }; }) {
                 dataSource.field(sourceField.index, {
-                    summaryType: args.itemData.value
+                    summaryType: args.itemData.value,
+                    
                 });
 
                 dataSource.load();
@@ -98,12 +101,16 @@ export class PivotComponent implements OnInit {
 
             for (let summaryType of ["Sum", "Avg", "Min", "Max"]) {
                 var summaryTypeValue = summaryType.toLowerCase();
+               
+                
 
                 menuItems.push({
                     text: summaryType,
                     value: summaryType.toLowerCase(),
                     onItemClick: setSummaryType,
-                    selected: e.field.summaryType === summaryTypeValue
+                    selected: e.field.summaryType === summaryTypeValue,
+              
+
                 });
             };
         }

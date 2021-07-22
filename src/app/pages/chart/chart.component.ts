@@ -14,6 +14,7 @@ export class ChartComponent implements OnInit {
   month:any = [];
   monthData:any=[];
   data:any=[];
+  unique:any=[];
   
   constructor(private http: HttpClient) { }
 
@@ -65,7 +66,7 @@ export class ChartComponent implements OnInit {
       }
   
     }) 
-    //console.log(data.value)
+    console.log(data.value)
     
         this.monthData.filter(['month', '=', data.value]);
         this.monthData.load();

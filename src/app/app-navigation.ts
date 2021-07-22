@@ -1,7 +1,4 @@
 export const navigation = [
- 
- 
-  
   {
     text: 'Météo',
     path: '/weather',

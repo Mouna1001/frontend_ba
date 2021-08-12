@@ -1,8 +1,9 @@
+
 export const navigation = [
   {
     text: 'Météo',
     path: '/weather',
-    icon: 'isnotblank'
+    icon: 'C:/Users/ASUS/Desktop/barrages/frontend_barrages/src/assets/images/cloudy%20.png'
   },
   {
     text: 'Barrage',
@@ -32,5 +33,11 @@ export const navigation = [
       }
 
     ]
-  }
+  },
+  {
+    text: 'Fill rate prediction',
+    path: '',
+    icon: 'isnotblank'
+  },
+
 ];

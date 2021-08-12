@@ -50,7 +50,40 @@ export class PivotComponent implements OnInit {
           element.date = new Date(element.date);
         });
       }
-     
+     this.Pivotdata={
+       store:this.Pivotdata,
+       fields:[{
+         caption : "Fill rate",
+         dataField:"fill_rate",
+         summaryType: "sum",
+         format:{
+            type: "largeNumber",
+            precision:2
+         },        
+
+       },
+       {
+        caption : "Normal capacity",
+        dataField:"normal_capacity",
+        summaryType: "sum",
+        format:{
+           type: "largeNumber",
+           precision:2
+        },
+        
+       },
+       {caption : "Reserve",
+         dataField:"reserve",
+         summaryType: "sum",
+         format:{
+            type: "largeNumber",
+            precision:2
+         },
+         }
+      
+      ]
+
+     }
     
     })
   } 
@@ -70,7 +103,7 @@ export class PivotComponent implements OnInit {
             e.items.push({
                 text: "Hide field",
                 onItemClick: function () {
-                    var fieldIndex;
+                    var fieldIndex: any;
                     if (sourceField.groupName) {
                         fieldIndex = dataSource.getAreaFields(sourceField.area, true)[sourceField.areaIndex].index;
                     } else {
@@ -108,7 +141,7 @@ export class PivotComponent implements OnInit {
                     text: summaryType,
                     value: summaryType.toLowerCase(),
                     onItemClick: setSummaryType,
-                    selected: e.field.summaryType === summaryTypeValue,
+                    selected: e.field.summaryType === summaryTypeValue
               
 
                 });
